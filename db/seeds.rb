@@ -7,14 +7,23 @@ require 'faker'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+def fake_content
+  paragraphs = []
+  paragraphs << Faker::Lorem.paragraph
+  paragraphs << Faker::Hipster.paragraph
+  paragraphs.flatten.join("\n\n")
+end
+  
+
 puts 'Creating 10 fake articles....'
 
-10.times do
-  article = Article.new(
-    title: Faker::Book.title
-    content: Faker::Hipster.paragraph)
+20.times do
+  Article.create(
+    title: Faker::Book.title,
+    content: fake_content
+  )
   article.save!
-  
 end
 
 puts 'Finished!'
